@@ -18,7 +18,7 @@ const getRegularUrl = (query, basseUrl) => {
   return basseUrl.replace(/\{format\}/g, 'json') + '?' + query;
 };
 
-const fetchLink = (url, provider, params = {}) => {
+const createLink = (url, provider, params = {}) => {
   const {
     provider_name, // eslint-disable-line camelcase
     provider_url, // eslint-disable-line camelcase
@@ -47,7 +47,7 @@ const fetchLink = (url, provider, params = {}) => {
 };
 
 const fetchEmbed = async (url, provider, params = {}) => {
-  const link = fetchLink(url, provider, params = {});
+  const link = createLink(url, provider, params = {});
   const res = await fetch(link, {mode: 'no-cors'});
   const json = await res.json();
   json.provider_name = provider_name; // eslint-disable-line camelcase
@@ -57,5 +57,5 @@ const fetchEmbed = async (url, provider, params = {}) => {
 
 module.exports = {
   fetchEmbed,
-  fetchLink,
+  createLink,
 };
