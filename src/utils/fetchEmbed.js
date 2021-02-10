@@ -18,12 +18,7 @@ const getRegularUrl = (query, basseUrl) => {
   return basseUrl.replace(/\{format\}/g, 'json') + '?' + query;
 };
 
-const fetchEmbed = async (url, provider, params = {}) => {
-  const {
-    provider_name, // eslint-disable-line camelcase
-    provider_url, // eslint-disable-line camelcase
-  } = provider;
-
+const createLink = (url, provider, params = {}) => {
   const queries = [
     'format=json',
     `url=${encodeURIComponent(url)}`,
@@ -48,11 +43,19 @@ const fetchEmbed = async (url, provider, params = {}) => {
   const query = queries.join('&');
 
   const link = getRegularUrl(query, provider.url);
+  return link;
+};
+
+const fetchEmbed = async (url, provider, params) => {
+  const link = createLink(url, provider, params);
   const res = await fetch(link, {mode: 'no-cors'});
   const json = await res.json();
-  json.provider_name = provider_name; // eslint-disable-line camelcase
-  json.provider_url = provider_url; // eslint-disable-line camelcase
+  json.provider_name = provider.name;
+  json.provider_url = provider.url;
   return json;
 };
 
-module.exports = fetchEmbed;
+module.exports = {
+  fetchEmbed,
+  createLink,
+};
