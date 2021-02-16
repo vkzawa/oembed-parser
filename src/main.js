@@ -23,7 +23,7 @@ const extract = async (url, params = {}) => {
   return data;
 };
 
-const getLink = async (url, params = {}) => {
+const getLink = (url, params = {}) => {
   if (!isValidURL(url)) {
     throw new Error('Invalid input URL');
   }
@@ -31,7 +31,7 @@ const getLink = async (url, params = {}) => {
   if (!p) {
     throw new Error(`No provider found with given url "${url}"`);
   }
-  const data = await createLink(url, p, params);
+  const data = createLink(url, p, params);
   return data;
 };
 

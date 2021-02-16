@@ -7,7 +7,7 @@
 
 export function extract(url: string, params?: any): Promise<OembedData>;
 
-export function getLink(url: string, params?: any): Promise<OembedData>;
+export function getLink(url: string, params?: any): string;
 
 export function hasProvider(url: string): boolean;
 
