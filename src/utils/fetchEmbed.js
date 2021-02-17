@@ -42,8 +42,7 @@ const createLink = (url, provider, params = {}) => {
 
   const query = queries.join('&');
 
-  const link = getRegularUrl(query, provider.url);
-  return link;
+  return getRegularUrl(query, provider.url);
 };
 
 const fetchEmbed = async (url, provider, params) => {
