@@ -8,9 +8,8 @@ const isInstagram = (provider) => {
 
 const getInstGraphUrl = (query, credentials) => {
   const baseUrl = 'https://graph.facebook.com/v8.0/instagram_oembed';
-  const appId = credentials.facebookAppId || '365101066946402';
-  const clientToken = credentials.facebookClientToken || 'a56861eb5b787f9e9a18e4e09ea5c873';
-  return `${baseUrl}?${query}&access_token=${appId}|${clientToken}`;
+  const clientToken = credentials.facebookClientToken || '';
+  return `${baseUrl}?${query}&access_token=${clientToken}`;
 };
 
 const getRegularUrl = (query, basseUrl) => {
